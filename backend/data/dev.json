@@ -1,0 +1,180 @@
+{
+    "users": [],
+    "courses": [
+        {
+            "id": 101,
+            "title": "Full Stack Web Development",
+            "description": "Master the art of building modern web applications from scratch using React, Node.js, and Postgres.",
+            "category": "Development",
+            "modules": [
+                {
+                    "id": 10101,
+                    "title": "Frontend Fundamentals",
+                    "lessons": [
+                        {
+                            "id": 1010101,
+                            "title": "HTML5 Semantics",
+                            "type": "text",
+                            "contentText": "HTML5 introduces semantic elements like <header>, <footer>, <article>, and <section>..."
+                        },
+                        {
+                            "id": 1010102,
+                            "title": "CSS Grid & Flexbox",
+                            "type": "video",
+                            "contentUrl": "https://www.youtube.com/watch?v=k32voqQhODc"
+                        }
+                    ]
+                },
+                {
+                    "id": 10102,
+                    "title": "Backend Mastery",
+                    "lessons": [
+                        {
+                            "id": 1010201,
+                            "title": "Node.js Architecture",
+                            "type": "text",
+                            "contentText": "Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient..."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 102,
+            "title": "UI/UX Design Masterclass",
+            "description": "Learn to design beautiful interfaces and user experiences. Figma, Color Theory, and Typography.",
+            "category": "Design",
+            "modules": [
+                {
+                    "id": 10201,
+                    "title": "Design Principles",
+                    "lessons": [
+                        {
+                            "id": 1020101,
+                            "title": "Color Theory",
+                            "type": "text",
+                            "contentText": "Color theory is the science and art of using color. It explains how humans perceive color..."
+                        },
+                        {
+                            "id": 1020102,
+                            "title": "Typography Basics",
+                            "type": "video",
+                            "contentUrl": "https://www.youtube.com/watch?v=sByzHoiYFX0"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 103,
+            "title": "Python for Data Science",
+            "description": "Analyze data, create visualizations, and build machine learning models with Python.",
+            "category": "Data Science",
+            "modules": [
+                {
+                    "id": 10301,
+                    "title": "Python Basics",
+                    "lessons": [
+                        {
+                            "id": 1030101,
+                            "title": "Variables & Types",
+                            "type": "text",
+                            "contentText": "Python variables do not need explicit declaration to reserve memory space..."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 104,
+            "title": "Digital Marketing 101",
+            "description": "Grow your business with SEO, Social Media, and Email Marketing strategies.",
+            "category": "Marketing",
+            "modules": []
+        },
+        {
+            "id": 105,
+            "title": "Mobile App Development with React Native",
+            "description": "Build native iOS and Android apps using your existing React knowledge.",
+            "category": "Development",
+            "modules": []
+        }
+    ],
+    "progress": [],
+    "questions": [
+        {
+            "id": 1,
+            "text": "What are you most interested in?",
+            "options": [
+                {
+                    "text": "Building Websites & Apps",
+                    "tags": [
+                        "Development"
+                    ]
+                },
+                {
+                    "text": "Designing Interfaces",
+                    "tags": [
+                        "Design"
+                    ]
+                },
+                {
+                    "text": "Analyzing Data",
+                    "tags": [
+                        "Data Science"
+                    ]
+                },
+                {
+                    "text": "Growing a Business",
+                    "tags": [
+                        "Marketing"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "text": "How do you prefer to work?",
+            "options": [
+                {
+                    "text": "Writing Logic & Code",
+                    "tags": [
+                        "Development",
+                        "Data Science"
+                    ]
+                },
+                {
+                    "text": "Visual Creativity",
+                    "tags": [
+                        "Design",
+                        "Marketing"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "text": "What is your goal?",
+            "options": [
+                {
+                    "text": "Become a Software Engineer",
+                    "tags": [
+                        "Development"
+                    ]
+                },
+                {
+                    "text": "Become a Data Analyst",
+                    "tags": [
+                        "Data Science"
+                    ]
+                },
+                {
+                    "text": "Freelance Designer",
+                    "tags": [
+                        "Design"
+                    ]
+                }
+            ]
+        }
+    ]
+}
