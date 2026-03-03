@@ -1,137 +1,144 @@
+import { useEffect } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Navbar } from '@/components/Navbar';
-import { Footer } from '@/components/Footer';
-import { motion } from 'framer-motion';
-import { Target, BarChart3, Route, ArrowRight, CheckCircle, Search, Sparkles } from 'lucide-react';
+import { GrainOverlay } from '@/components/cinematic/GrainOverlay';
+import { ScrollProgress } from '@/components/cinematic/ScrollProgress';
+import { HeroSection } from '@/components/cinematic/HeroSection';
+import { StorySection } from '@/components/cinematic/StorySection';
+import { FeatureSequence } from '@/components/cinematic/FeatureSequence';
+import { ClimaxSection } from '@/components/cinematic/ClimaxSection';
+import { MetricsSection } from '@/components/cinematic/MetricsSection';
+import { TestimonialsSection } from '@/components/cinematic/TestimonialsSection';
+import { PricingSection } from '@/components/cinematic/PricingSection';
+import { FAQSection } from '@/components/cinematic/FAQSection';
+import { EndSection } from '@/components/cinematic/EndSection';
 
-const features = [
-  { icon: Target, title: 'Skill Assessment', description: 'Take adaptive assessments to measure your proficiency across multiple skill domains.' },
-  { icon: BarChart3, title: 'Gap Analysis', description: 'Visualize the gap between your current skills and industry-required targets.' },
-  { icon: Route, title: 'Learning Path', description: 'Get AI-curated, prioritized learning roadmaps tailored to your career goals.' },
-];
+/* ─── Minimal transparent nav ─── */
+function CinematicNav() {
+  const { scrollY } = useScroll();
+  const navBg = useTransform(
+    scrollY,
+    [0, 80],
+    ['rgba(5,5,8,0)', 'rgba(5,5,8,0.88)']
+  );
 
-const steps = [
-  { icon: CheckCircle, title: 'Assess Your Skills', description: 'Complete targeted assessments to benchmark your current abilities.' },
-  { icon: Search, title: 'Identify Gaps', description: 'Our engine analyzes your results against industry standards.' },
-  { icon: Sparkles, title: 'Follow Your Path', description: 'Get a personalized learning roadmap and track your progress.' },
-];
-
-const Landing = () => {
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <motion.nav
+      className="fixed top-0 left-0 right-0 z-50 px-6 md:px-10 py-4 flex items-center justify-between"
+      style={{
+        background: navBg,
+        backdropFilter: 'blur(14px)',
+        WebkitBackdropFilter: 'blur(14px)',
+        borderBottom: '1px solid rgba(255,255,255,0)',
+      }}
+    >
+      {/* Logo */}
+      <motion.div
+        initial={{ opacity: 0, x: -12 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        className="font-bold text-xl tracking-tight select-none"
+        style={{ fontFamily: "'Space Grotesk', sans-serif", color: '#F8FAFC' }}
+      >
+        Luminary
+      </motion.div>
 
-      {/* Hero */}
-      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
-        <div className="absolute inset-0 gradient-primary opacity-5" />
-        <div className="absolute top-20 right-10 w-72 h-72 rounded-full bg-primary/10 blur-3xl" />
-        <div className="absolute bottom-10 left-10 w-96 h-96 rounded-full bg-accent/10 blur-3xl" />
-
-        <div className="max-w-7xl mx-auto relative">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-3xl mx-auto space-y-6"
+      {/* Nav links (center) */}
+      <motion.div
+        initial={{ opacity: 0, y: -8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        className="hidden md:flex items-center gap-8"
+      >
+        {[
+          { label: 'Features', href: '#features' },
+          { label: 'Pricing', href: '#pricing' },
+          { label: 'FAQ', href: '#faq' },
+        ].map(({ label, href }) => (
+          <a
+            key={label}
+            href={href}
+            className="text-sm font-medium transition-colors duration-200"
+            style={{ color: '#64748B' }}
+            onMouseEnter={e => ((e.target as HTMLElement).style.color = '#94A3B8')}
+            onMouseLeave={e => ((e.target as HTMLElement).style.color = '#64748B')}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-sm font-medium">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span>AI-Powered Skill Development</span>
-            </div>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold font-['Space_Grotesk'] leading-tight text-balance">
-              Assess. Analyze.{' '}
-              <span className="gradient-text">Achieve.</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-              Discover your skill gaps, follow personalized learning paths, and track your growth with powerful analytics.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <Link to="/register">
-                <Button size="lg" className="gradient-primary border-0 text-base px-8 h-12 rounded-xl shadow-lg">
-                  Get Started Free <ArrowRight className="w-4 h-4 ml-1" />
-                </Button>
-              </Link>
-              <Link to="/login">
-                <Button variant="outline" size="lg" className="text-base px-8 h-12 rounded-xl">
-                  Login
-                </Button>
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+            {label}
+          </a>
+        ))}
+      </motion.div>
 
-      {/* Features */}
-      <section id="features" className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold font-['Space_Grotesk'] mb-3">Everything You Need</h2>
-            <p className="text-muted-foreground">Comprehensive tools for your skill development journey</p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {features.map((f, i) => (
-              <motion.div
-                key={f.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="glass rounded-2xl p-8 space-y-4 hover:shadow-xl transition-shadow"
-              >
-                <div className="w-12 h-12 rounded-xl gradient-primary flex items-center justify-center">
-                  <f.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <h3 className="text-xl font-semibold font-['Space_Grotesk']">{f.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{f.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Actions */}
+      <motion.div
+        initial={{ opacity: 0, x: 12 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        className="flex items-center gap-4"
+      >
+        <Link
+          to="/login"
+          className="text-sm font-medium transition-colors duration-200 hidden sm:block"
+          style={{ color: '#64748B' }}
+          onMouseEnter={e => ((e.target as HTMLElement).style.color = '#94A3B8')}
+          onMouseLeave={e => ((e.target as HTMLElement).style.color = '#64748B')}
+        >
+          Sign In
+        </Link>
+        <Link
+          to="/register"
+          className="px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 hover:scale-105"
+          style={{
+            background: 'rgba(139,92,246,0.15)',
+            border: '1px solid rgba(139,92,246,0.35)',
+            color: '#A78BFA',
+          }}
+        >
+          Get Started
+        </Link>
+      </motion.div>
+    </motion.nav>
+  );
+}
 
-      {/* How It Works */}
-      <section id="how-it-works" className="py-20 px-4 bg-secondary/30">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold font-['Space_Grotesk'] mb-3">How It Works</h2>
-            <p className="text-muted-foreground">Three simple steps to accelerate your growth</p>
-          </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((s, i) => (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.15 }}
-                className="text-center space-y-4"
-              >
-                <div className="w-16 h-16 rounded-2xl gradient-primary flex items-center justify-center mx-auto shadow-lg">
-                  <s.icon className="w-8 h-8 text-primary-foreground" />
-                </div>
-                <div className="text-sm font-semibold text-primary">Step {i + 1}</div>
-                <h3 className="text-lg font-semibold font-['Space_Grotesk']">{s.title}</h3>
-                <p className="text-sm text-muted-foreground">{s.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+/* ─── Page ─── */
+export default function Index() {
+  // Force dark cinematic background on the document while this page is mounted
+  useEffect(() => {
+    const prevBg = document.body.style.background;
+    const prevOverflow = document.documentElement.style.overflowX;
+    document.body.style.background = '#050508';
+    document.documentElement.style.overflowX = 'hidden';
 
-      <Footer />
+    return () => {
+      document.body.style.background = prevBg;
+      document.documentElement.style.overflowX = prevOverflow;
+    };
+  }, []);
+
+  return (
+    <div
+      className="cinematic-page"
+      style={{ background: '#050508', minHeight: '100vh', overflowX: 'hidden' }}
+    >
+      {/* Global overlays */}
+      <GrainOverlay />
+      <ScrollProgress />
+
+      {/* Nav */}
+      <CinematicNav />
+
+      {/* Sections */}
+      <HeroSection />
+      <MetricsSection />
+      <div id="features">
+        <StorySection />
+        <FeatureSequence />
+      </div>
+      <ClimaxSection />
+      <TestimonialsSection />
+      <PricingSection />
+      <FAQSection />
+      <EndSection />
     </div>
   );
-};
-
-export default Landing;
+}

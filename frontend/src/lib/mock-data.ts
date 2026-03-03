@@ -12,14 +12,74 @@ export const mockSkills: Skill[] = [
 ];
 
 export const mockGapSkills: GapSkill[] = [
-  { id: '1', name: 'Docker', currentLevel: 3, targetLevel: 7, gapPercentage: 57, severity: 'high' },
-  { id: '2', name: 'AWS', currentLevel: 2, targetLevel: 6, gapPercentage: 67, severity: 'high' },
-  { id: '3', name: 'Node.js', currentLevel: 4, targetLevel: 7, gapPercentage: 43, severity: 'medium' },
-  { id: '4', name: 'TypeScript', currentLevel: 5, targetLevel: 8, gapPercentage: 38, severity: 'medium' },
-  { id: '5', name: 'React', currentLevel: 6, targetLevel: 9, gapPercentage: 33, severity: 'medium' },
-  { id: '6', name: 'JavaScript', currentLevel: 7, targetLevel: 9, gapPercentage: 22, severity: 'low' },
-  { id: '7', name: 'Python', currentLevel: 6, targetLevel: 8, gapPercentage: 25, severity: 'low' },
-  { id: '8', name: 'SQL', currentLevel: 7, targetLevel: 8, gapPercentage: 13, severity: 'low' },
+  {
+    id: '1', name: 'Docker', currentLevel: 3, targetLevel: 7, gapPercentage: 57, severity: 'high',
+    prerequisites: [
+      { topic: 'Linux Command Line Basics', description: 'Understanding file system navigation, permissions, and shell commands is essential for working with Docker containers.', importance: 'essential' },
+      { topic: 'Networking Fundamentals', description: 'Know TCP/IP, ports, DNS, and HTTP — Docker relies heavily on network configuration.', importance: 'essential' },
+      { topic: 'Virtual Machines vs Containers', description: 'Understand the difference between VMs and containers to grasp why Docker is efficient.', importance: 'recommended' },
+      { topic: 'YAML Syntax', description: 'Docker Compose files use YAML. Being comfortable reading and writing YAML helps a lot.', importance: 'helpful' },
+    ],
+  },
+  {
+    id: '2', name: 'AWS', currentLevel: 2, targetLevel: 6, gapPercentage: 67, severity: 'high',
+    prerequisites: [
+      { topic: 'Cloud Computing Concepts', description: 'Understand IaaS, PaaS, SaaS models and how cloud differs from on‑premise infrastructure.', importance: 'essential' },
+      { topic: 'Networking & DNS', description: 'Know how IP addresses, subnets, load balancers, and DNS work before configuring AWS VPCs.', importance: 'essential' },
+      { topic: 'Linux Server Administration', description: 'Most AWS instances run Linux. Basic sysadmin skills are needed for EC2 management.', importance: 'recommended' },
+      { topic: 'REST API Basics', description: 'Many AWS services are accessed via APIs. Understanding REST and HTTP methods is helpful.', importance: 'helpful' },
+    ],
+  },
+  {
+    id: '3', name: 'Node.js', currentLevel: 4, targetLevel: 7, gapPercentage: 43, severity: 'medium',
+    prerequisites: [
+      { topic: 'JavaScript ES6+ Fundamentals', description: 'Arrow functions, destructuring, promises, and async/await are the foundation of Node.js code.', importance: 'essential' },
+      { topic: 'How the Event Loop Works', description: 'Node.js is single‑threaded and event-driven. Understanding the event loop prevents blocking bugs.', importance: 'essential' },
+      { topic: 'HTTP Protocol', description: 'Know request/response cycle, status codes, and headers to build web servers effectively.', importance: 'recommended' },
+      { topic: 'npm & Package Management', description: 'Understanding package.json, versioning, and dependency management is key for Node projects.', importance: 'recommended' },
+    ],
+  },
+  {
+    id: '4', name: 'TypeScript', currentLevel: 5, targetLevel: 8, gapPercentage: 38, severity: 'medium',
+    prerequisites: [
+      { topic: 'JavaScript Proficiency', description: 'TypeScript builds on JavaScript. Strong JS knowledge (closures, prototypes, modules) is a must.', importance: 'essential' },
+      { topic: 'Object-Oriented Programming', description: 'Concepts like classes, interfaces, inheritance, and polymorphism transfer directly to TypeScript.', importance: 'recommended' },
+      { topic: 'Static vs Dynamic Typing', description: 'Understand the benefits and trade-offs of type systems to appreciate what TS offers.', importance: 'helpful' },
+    ],
+  },
+  {
+    id: '5', name: 'React', currentLevel: 6, targetLevel: 9, gapPercentage: 33, severity: 'medium',
+    prerequisites: [
+      { topic: 'HTML & CSS Mastery', description: 'React renders HTML. Understanding semantic HTML, CSS layout (flexbox, grid), and responsive design is critical.', importance: 'essential' },
+      { topic: 'JavaScript ES6+', description: 'JSX, hooks, and state management all rely on modern JavaScript features.', importance: 'essential' },
+      { topic: 'DOM Manipulation Concepts', description: 'Knowing how the browser DOM works helps you understand React\'s virtual DOM optimization.', importance: 'recommended' },
+      { topic: 'Component‑Based Architecture', description: 'Understanding reusable, composable UI patterns will accelerate your React learning.', importance: 'helpful' },
+    ],
+  },
+  {
+    id: '6', name: 'JavaScript', currentLevel: 7, targetLevel: 9, gapPercentage: 22, severity: 'low',
+    prerequisites: [
+      { topic: 'Basic Programming Logic', description: 'Variables, loops, conditionals, and functions form the base of all JavaScript code.', importance: 'essential' },
+      { topic: 'HTML & Browser Basics', description: 'JavaScript runs inside the browser. Knowing HTML structure and browser DevTools is important.', importance: 'recommended' },
+      { topic: 'Data Structures Overview', description: 'Arrays, objects, maps, and sets are used everywhere in JavaScript. Have a mental model of each.', importance: 'helpful' },
+    ],
+  },
+  {
+    id: '7', name: 'Python', currentLevel: 6, targetLevel: 8, gapPercentage: 25, severity: 'low',
+    prerequisites: [
+      { topic: 'Programming Fundamentals', description: 'Control flow, functions, and basic data types are needed before diving into Python.', importance: 'essential' },
+      { topic: 'Understanding Data Structures', description: 'Lists, dictionaries, tuples, and sets are core to Python — know how and when to use each.', importance: 'recommended' },
+      { topic: 'Command Line Basics', description: 'Running Python scripts, pip installs, and virtual environments all happen in the terminal.', importance: 'helpful' },
+    ],
+  },
+  {
+    id: '8', name: 'SQL', currentLevel: 7, targetLevel: 8, gapPercentage: 13, severity: 'low',
+    prerequisites: [
+      { topic: 'Relational Database Concepts', description: 'Tables, rows, columns, primary keys, and foreign keys — the building blocks of SQL databases.', importance: 'essential' },
+      { topic: 'Data Normalization', description: 'Understanding 1NF, 2NF, 3NF helps you design efficient, non‑redundant database schemas.', importance: 'recommended' },
+      { topic: 'Basic Set Theory', description: 'SQL JOINs and filtering are based on set operations. A conceptual understanding speeds up learning.', importance: 'helpful' },
+    ],
+  },
 ];
 
 export const mockLearningSteps: LearningStep[] = [

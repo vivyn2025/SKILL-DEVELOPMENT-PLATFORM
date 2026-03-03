@@ -71,12 +71,12 @@ const AssessmentPage = () => {
       <main className="pt-20 pb-10 px-4 lg:pl-60 lg:pr-6">
         <div className="max-w-3xl mx-auto space-y-6">
           {/* Header */}
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <div>
-              <h1 className="text-xl font-bold font-['Space_Grotesk']">{mockAssessment.title}</h1>
-              <p className="text-sm text-muted-foreground">Question {currentQ + 1} of {questions.length}</p>
+              <h1 className="text-lg sm:text-xl font-bold font-['Space_Grotesk']">{mockAssessment.title}</h1>
+              <p className="text-xs sm:text-sm text-muted-foreground">Question {currentQ + 1} of {questions.length}</p>
             </div>
-            <div className={cn('flex items-center gap-2 px-4 py-2 rounded-xl glass', timeLeft < 60 && 'text-destructive')}>
+            <div className={cn('flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl glass text-sm', timeLeft < 60 && 'text-destructive')}>
               <Clock className="w-4 h-4" />
               <span className="font-mono font-semibold">{formatTime(timeLeft)}</span>
             </div>
@@ -91,16 +91,16 @@ const AssessmentPage = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
-              className="glass rounded-2xl p-8 space-y-6"
+              className="glass rounded-2xl p-4 sm:p-6 md:p-8 space-y-4 sm:space-y-6"
             >
-              <h2 className="text-lg font-semibold">{q.text}</h2>
+              <h2 className="text-base sm:text-lg font-semibold leading-relaxed">{q.text}</h2>
               <div className="space-y-3">
                 {q.options.map((opt, i) => (
                   <button
                     key={i}
                     onClick={() => setAnswers({ ...answers, [currentQ]: i })}
                     className={cn(
-                      'w-full text-left p-4 rounded-xl border-2 transition-all duration-200',
+                      'w-full text-left p-3 sm:p-4 rounded-xl border-2 transition-all duration-200 text-sm sm:text-base',
                       answers[currentQ] === i
                         ? 'border-primary bg-primary/5 shadow-md'
                         : 'border-border hover:border-primary/50 hover:bg-secondary/50'
@@ -115,15 +115,15 @@ const AssessmentPage = () => {
 
           {/* Navigation */}
           <div className="flex items-center justify-between">
-            <Button variant="outline" onClick={() => setCurrentQ((c) => c - 1)} disabled={currentQ === 0} className="rounded-xl">
-              <ChevronLeft className="w-4 h-4 mr-1" /> Previous
+            <Button variant="outline" onClick={() => setCurrentQ((c) => c - 1)} disabled={currentQ === 0} className="rounded-xl text-sm sm:text-base">
+              <ChevronLeft className="w-4 h-4 mr-1" /> <span className="hidden sm:inline">Previous</span><span className="sm:hidden">Prev</span>
             </Button>
             {currentQ < questions.length - 1 ? (
-              <Button onClick={() => setCurrentQ((c) => c + 1)} className="gradient-primary border-0 rounded-xl">
-                Next <ChevronRight className="w-4 h-4 ml-1" />
+              <Button onClick={() => setCurrentQ((c) => c + 1)} className="gradient-primary border-0 rounded-xl text-sm sm:text-base">
+                <span className="hidden sm:inline">Next</span><span className="sm:hidden">Next</span> <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             ) : (
-              <Button onClick={() => setShowModal(true)} className="gradient-primary border-0 rounded-xl">Submit</Button>
+              <Button onClick={() => setShowModal(true)} className="gradient-primary border-0 rounded-xl text-sm sm:text-base">Submit</Button>
             )}
           </div>
         </div>
@@ -142,19 +142,19 @@ const AssessmentPage = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="glass-strong rounded-2xl p-8 max-w-sm w-full mx-4 space-y-4"
+              className="glass-strong rounded-2xl p-4 sm:p-6 md:p-8 max-w-sm w-full mx-4 space-y-4"
             >
               <div className="flex items-center gap-3">
-                <AlertCircle className="w-6 h-6 text-primary" />
-                <h3 className="text-lg font-bold font-['Space_Grotesk']">Submit Assessment?</h3>
+                <AlertCircle className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
+                <h3 className="text-base sm:text-lg font-bold font-['Space_Grotesk']">Submit Assessment?</h3>
               </div>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 You've answered {Object.keys(answers).length} of {questions.length} questions.
                 {Object.keys(answers).length < questions.length && ' Some questions are unanswered.'}
               </p>
-              <div className="flex gap-3">
-                <Button variant="outline" className="flex-1 rounded-xl" onClick={() => setShowModal(false)}>Cancel</Button>
-                <Button className="flex-1 gradient-primary border-0 rounded-xl" onClick={handleSubmit}>Confirm</Button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button variant="outline" className="flex-1 rounded-xl text-sm sm:text-base" onClick={() => setShowModal(false)}>Cancel</Button>
+                <Button className="flex-1 gradient-primary border-0 rounded-xl text-sm sm:text-base" onClick={handleSubmit}>Confirm</Button>
               </div>
             </motion.div>
           </motion.div>

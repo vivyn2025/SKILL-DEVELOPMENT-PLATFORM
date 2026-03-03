@@ -153,4 +153,49 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* ── Cinematic palette ── */
+  .cinematic-page {
+    --cin-bg: #050508;
+    --cin-surface: #0d0d14;
+    --cin-accent: #8B5CF6;
+    --cin-cyan: #22d3ee;
+    --cin-text: #F8FAFC;
+    --cin-muted: #94A3B8;
+    --cin-subtle: #475569;
+  }
+
+  /* ── Smooth scroll for cinematic sections ── */
+  .cinematic-page {
+    scroll-behavior: smooth;
+  }
+
+  /* ── Cinematic gradient text helper ── */
+  .cin-gradient-text {
+    background: linear-gradient(135deg, #8B5CF6 0%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Vignette overlay ── */
+  .cin-vignette::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(5, 5, 8, 0.7) 100%);
+    pointer-events: none;
+  }
+
+  /* ── Glow utilities ── */
+  .cin-glow-violet {
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.4), 0 0 80px rgba(139, 92, 246, 0.15);
+  }
+  .cin-glow-cyan {
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.4), 0 0 80px rgba(34, 211, 238, 0.15);
+  }
+
+  /* ── Hide scrollbar (feature strip) ── */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 }

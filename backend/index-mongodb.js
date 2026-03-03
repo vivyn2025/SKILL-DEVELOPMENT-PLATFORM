@@ -98,6 +98,7 @@ app.post('/api/auth/register', async (req, res) => {
 
 app.post('/api/auth/login', async (req, res) => {
     const { email, password } = req.body;
+    console.log(`Login attempt for: ${email}`);
     try {
         const user = await User.findOne({ email });
         if (!user) {
@@ -191,15 +192,17 @@ app.get('/api/progress', authMiddleware, async (req, res) => {
             .populate('skillId')
             .sort({ lastUpdated: -1 });
 
-        // Transform to match frontend expected format
-        const transformed = progress.map(p => ({
-            id: p.skillId._id,
-            name: p.skillId.name,
-            category: p.skillId.category,
-            currentLevel: p.currentLevel,
-            targetLevel: p.targetLevel,
-            score: p.score
-        }));
+        // Filter out records where skill was not found and transform
+        const transformed = progress
+            .filter(p => p.skillId)
+            .map(p => ({
+                id: p.skillId._id.toString(),
+                name: p.skillId.name,
+                category: p.skillId.category,
+                currentLevel: p.currentLevel,
+                targetLevel: p.targetLevel,
+                score: p.score
+            }));
 
         res.json(transformed);
     } catch (err) {
@@ -450,6 +453,7 @@ app.get('/api/admin/weakest-skills', authMiddleware, adminMiddleware, async (req
         // Group by skill and calculate average
         const skillMap = new Map();
         allProgress.forEach(p => {
+            if (!p.skillId) return;
             const skillName = p.skillId.name;
             if (!skillMap.has(skillName)) {
                 skillMap.set(skillName, { total: 0, count: 0 });

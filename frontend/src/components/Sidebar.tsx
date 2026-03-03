@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, ClipboardCheck, BarChart3, Route, Shield, ChevronLeft, ChevronRight } from 'lucide-react';
+import { LayoutDashboard, ClipboardCheck, BarChart3, Route, Shield, ChevronLeft, ChevronRight, BookOpen, Users } from 'lucide-react';
+import { useAuth } from '@/hooks/useAuth';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -16,8 +17,16 @@ const adminLinks = [
 ];
 
 export function Sidebar() {
+  const { user } = useAuth();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(false);
+
+  const adminLinks = user?.role === 'admin' ? [
+    { to: '/admin', icon: Shield, label: 'Admin Panel' },
+    { to: '/admin/skills', icon: BookOpen, label: 'Manage Skills' },
+    { to: '/admin/assessments', icon: ClipboardCheck, label: 'Manage Assessments' },
+    { to: '/admin/users', icon: Users, label: 'User Management' },
+  ] : [];
 
   const allLinks = [...studentLinks, ...adminLinks];
 

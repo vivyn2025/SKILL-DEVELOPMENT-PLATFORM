@@ -4,13 +4,14 @@ import { KPIWidget } from '@/components/KPIWidget';
 import { ChartCard } from '@/components/ChartCard';
 import { adminUserData, weakestSkillsData, progressData } from '@/lib/mock-data';
 import { motion } from 'framer-motion';
-import { Users, ClipboardCheck, TrendingUp, Activity } from 'lucide-react';
+import { Users, ClipboardCheck, TrendingUp, Activity, BookOpen } from 'lucide-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   LineChart, Line, ResponsiveContainer
 } from 'recharts';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
+import { Link } from 'react-router-dom';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 const AdminDashboard = () => {
   return (
@@ -20,8 +21,8 @@ const AdminDashboard = () => {
       <main className="pt-20 pb-10 px-4 lg:pl-60 lg:pr-6">
         <div className="max-w-7xl mx-auto space-y-6">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <h1 className="text-2xl font-bold font-['Space_Grotesk']">Admin Dashboard</h1>
-            <p className="text-sm text-muted-foreground">Platform overview and analytics</p>
+            <h1 className="text-2xl font-bold font-['Space_Grotesk']">Admin Console</h1>
+            <p className="text-sm text-muted-foreground">Strategic overview and management shortcuts</p>
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -31,7 +32,7 @@ const AdminDashboard = () => {
             <KPIWidget label="Active Today" value={43} icon={Activity} trend={8} />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 pb-6">
             <ChartCard title="WEAKEST SKILLS (AVG SCORES)">
               <ResponsiveContainer width="100%" height={280}>
                 <BarChart data={weakestSkillsData} layout="vertical">
@@ -57,38 +58,32 @@ const AdminDashboard = () => {
             </ChartCard>
           </div>
 
-          {/* User Table */}
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="glass rounded-2xl p-6">
-            <h3 className="text-sm font-semibold text-muted-foreground mb-4">USER PERFORMANCE</h3>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Avg Score</TableHead>
-                    <TableHead>Assessments</TableHead>
-                    <TableHead>Last Active</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {adminUserData.map((u) => (
-                    <TableRow key={u.id}>
-                      <TableCell className="font-medium">{u.name}</TableCell>
-                      <TableCell className="text-muted-foreground">{u.email}</TableCell>
-                      <TableCell>
-                        <Badge variant="outline" className={u.avgScore >= 80 ? 'text-accent border-accent/20' : u.avgScore >= 60 ? 'text-warning border-warning/20' : 'text-destructive border-destructive/20'}>
-                          {u.avgScore}%
-                        </Badge>
-                      </TableCell>
-                      <TableCell>{u.assessments}</TableCell>
-                      <TableCell className="text-muted-foreground text-sm">{u.lastActive}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Card className="glass p-6 text-center space-y-4 hover:shadow-lg transition-all duration-300">
+              <Users className="w-10 h-10 text-primary mx-auto" />
+              <h3 className="font-semibold text-lg">User Directory</h3>
+              <p className="text-sm text-muted-foreground">Manage all students, roles, and account permissions.</p>
+              <Link to="/admin/users" className="block">
+                <Button className="w-full rounded-xl gradient-primary border-0">Manage Users</Button>
+              </Link>
+            </Card>
+            <Card className="glass p-6 text-center space-y-4 hover:shadow-lg transition-all duration-300">
+              <BookOpen className="w-10 h-10 text-accent mx-auto" />
+              <h3 className="font-semibold text-lg">Skill Lab</h3>
+              <p className="text-sm text-muted-foreground">Configure the skill taxonomy and difficulty levels.</p>
+              <Link to="/admin/skills" className="block">
+                <Button className="w-full rounded-xl gradient-primary border-0">Manage Skills</Button>
+              </Link>
+            </Card>
+            <Card className="glass p-6 text-center space-y-4 hover:shadow-lg transition-all duration-300">
+              <ClipboardCheck className="w-10 h-10 text-green-500 mx-auto" />
+              <h3 className="font-semibold text-lg">Assessment Hub</h3>
+              <p className="text-sm text-muted-foreground">Monitor and manage all skill evaluation modules.</p>
+              <Link to="/admin/assessments" className="block">
+                <Button className="w-full rounded-xl gradient-primary border-0">Manage Assessments</Button>
+              </Link>
+            </Card>
+          </div>
         </div>
       </main>
     </div>

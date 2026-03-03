@@ -42,7 +42,7 @@ export function SidebarLeft({
 
     const teams = [
         {
-            name: "SKILL Platform",
+            name: "Luminary",
             logo: GraduationCap,
             plan: user?.role === "admin" ? "Admin" : "Student",
         },
@@ -85,6 +85,21 @@ export function SidebarLeft({
             title: "Admin Dashboard",
             url: "/admin",
             icon: Shield,
+        },
+        {
+            title: "Manage Skills",
+            url: "/admin/skills",
+            icon: BookOpen,
+        },
+        {
+            title: "Manage Assessments",
+            url: "/admin/assessments",
+            icon: Shield,
+        },
+        {
+            title: "User Management",
+            url: "/admin/users",
+            icon: GraduationCap,
         },
     ] : []
 

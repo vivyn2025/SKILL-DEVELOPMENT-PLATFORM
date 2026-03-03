@@ -31,6 +31,12 @@ export interface Question {
   correctAnswer: number;
 }
 
+export interface Prerequisite {
+  topic: string;
+  description: string;
+  importance: 'essential' | 'recommended' | 'helpful';
+}
+
 export interface GapSkill {
   id: string;
   name: string;
@@ -38,6 +44,7 @@ export interface GapSkill {
   targetLevel: number;
   gapPercentage: number;
   severity: 'high' | 'medium' | 'low';
+  prerequisites?: Prerequisite[];
 }
 
 export interface LearningStep {
