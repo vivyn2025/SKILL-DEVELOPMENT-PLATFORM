@@ -84,8 +84,8 @@ const LearningPath = () => {
                           step.status === 'completed'
                             ? 'bg-accent border-accent text-accent-foreground'
                             : step.status === 'in-progress'
-                            ? 'bg-primary border-primary text-primary-foreground'
-                            : 'bg-card border-border text-muted-foreground'
+                              ? 'bg-primary border-primary text-primary-foreground'
+                              : 'bg-card border-border text-muted-foreground'
                         )}
                       >
                         <StatusIcon className={cn('w-3.5 h-3.5', step.status === 'in-progress' && 'animate-spin')} />

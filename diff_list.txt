@@ -1,0 +1,11 @@
+README.md
+backend/index-mongodb.js
+backend/package-lock.json
+frontend/index.html
+frontend/package-lock.json
+frontend/package.json
+frontend/src/components/ui/badge.tsx
+frontend/src/lib/mock-data.ts
+frontend/src/pages/Dashboard.tsx
+frontend/src/pages/LearningPath.tsx
+frontend/vite.config.ts

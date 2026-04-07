@@ -1,0 +1,4 @@
+﻿4de5ae8 Update README with MongoDB integration guide
+9deaad9 Push updated code
+8d123b1 Update project structure, configurations, and frontend tests
+56d8d9b Upgrade core pages and add landing page with premium styles

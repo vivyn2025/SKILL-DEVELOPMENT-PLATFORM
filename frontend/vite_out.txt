@@ -1,0 +1,50 @@
+﻿
+> skill-frontend@0.1.0 dev
+> vite --port 5173 --host
+
+node.exe : [33mThe CJS 
+build of Vite's Node API is 
+deprecated. See https://vite.
+dev/guide/troubleshooting.htm
+l#vite-cjs-node-api-deprecate
+d for more details.[39m
+At C:\Program 
+Files\nodejs\npm.ps1:29 
+char:3
++   & $NODE_EXE $NPM_CLI_JS 
+$args
++   
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo           
+   : NotSpecified: ([33mTh  
+  e CJS bu...e details.[3   
+ 9m:String) [], RemoteExc    
+eption
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+
+  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m566[22m[2m[0m ms[22m
+
+  [32mΓ₧£[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
+  [32mΓ₧£[39m  [1mNetwork[22m: [36mhttp://10.40.40.221:[1m5173[22m/[39m
+[2m[32m  Γ₧£[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+(node:31416) [MODULE_TYPELESS
+_PACKAGE_JSON] Warning: 
+Module type of file:///C:/Use
+rs/rrviv/OneDrive/Desktop/SKI
+LL/frontend/postcss.config.js
+ is not specified and it 
+doesn't parse as CommonJS.
+Reparsing as ES module 
+because module syntax was 
+detected. This incurs a 
+performance overhead.
+To eliminate this warning, 
+add "type": "module" to C:\Us
+ers\rrviv\OneDrive\Desktop\SK
+ILL\frontend\package.json.
+(Use `node --trace-warnings 
+...` to show where the 
+warning was created)
+[2m12:14:41 pm[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mindex.html[22m
