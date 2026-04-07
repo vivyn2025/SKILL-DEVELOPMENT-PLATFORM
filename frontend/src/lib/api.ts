@@ -1,5 +1,5 @@
 // API Base URL
-const API_BASE_URL = '/api';
+const API_BASE_URL = 'https://skill-development-platform-2cjy.vercel.app/api';
 
 // Helper function to get auth token
 const getToken = () => localStorage.getItem('token');
