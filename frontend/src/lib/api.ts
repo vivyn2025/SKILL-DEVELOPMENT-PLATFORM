@@ -1,5 +1,5 @@
-// API Base URL
-const API_BASE_URL = 'https://skill-development-platform-2cjy.vercel.app/api';
+// API Base URL — uses env variable in production (Vercel), falls back to Vite proxy in local dev
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 // Helper function to get auth token
 const getToken = () => localStorage.getItem('token');

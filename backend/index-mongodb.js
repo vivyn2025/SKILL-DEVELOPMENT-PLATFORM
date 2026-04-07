@@ -12,7 +12,18 @@ const UserSkillProgress = require('./models/UserSkillProgress');
 const LearningStep = require('./models/LearningStep');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+    origin: function (origin, callback) {
+        // Allow requests with no origin (like mobile apps, curl, Postman)
+        if (!origin) return callback(null, true);
+        // Allow any vercel.app domain, localhost, and your custom domains
+        const allowed = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)
+            || origin.endsWith('.vercel.app');
+        if (allowed) return callback(null, true);
+        return callback(new Error('Not allowed by CORS'));
+    },
+    credentials: true,
+}));
 app.use(express.json());
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev_secret_change_me';
